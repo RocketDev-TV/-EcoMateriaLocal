@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cierra el menú hamburguesa al hacer clic en un enlace
     navLinksList.forEach(link => {
         link.addEventListener('click', () => {
             if (navLinks.classList.contains('active')) {

@@ -1,39 +1,41 @@
-/* Paleta de colores:
---primary-color: #4CAF50; (Verde vibrante - para botones, acentos)
---secondary-color: #FFC107; (Amarillo brillante - para resaltar)
---accent-color: #2196F3; (Azul para enlaces y detalles)
+/* === NUEVA PALETA DE COLORES ===
+   Dark green:   #102820 (Fondo Navbar/Footer, Títulos principales)
+   Hunter green: #4C6444 (Fondo secciones alternas, Botones, Enlaces)
+   Khaki:        #CABA9C (Fondo principal Body, Texto sobre fondos oscuros)
+   Raw umber:    #8A6240 (Acentos, Hover de enlaces/botones, Bordes)
+   Café noir:    #4D2D18 (Texto principal sobre fondo claro)
 */
 
 :root {
-    --primary-color: #4CAF50;
-    --secondary-color: #FFC107;
-    --accent-color: #2196F3;
+    /* Paleta Principal */
+    --color-dark-green: #102820;
+    --color-hunter-green: #4C6444;
+    --color-khaki: #CABA9C;
+    --color-raw-umber: #8A6240;
+    --color-cafe-noir: #4D2D18;
 
-    /* Variables para Modo Claro (Default) */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f8f8;
-    --bg-card: #ffffff;
-    --bg-nav-footer: #2c3e50;
-    --text-primary: #333;
-    --text-secondary: #666;
-    --text-light: #f4f4f4;
-    --border-color: #ddd;
-    --shadow-color: rgba(0,0,0,0.1);
-    --shadow-color-hover: rgba(0,0,0,0.15);
-}
+    /* Asignación Funcional de Variables */
+    --primary-color: var(--color-hunter-green); /* Para acciones principales */
+    --secondary-color: var(--color-raw-umber);  /* Para acentos y hovers */
+    
+    /* Fondos */
+    --bg-body: var(--color-khaki);          /* Fondo general cálido */
+    --bg-section-alt: var(--color-hunter-green); /* Fondo para secciones alternas */
+    --bg-card-light: #ffffff;               /* Fondo para tarjetas sobre khaki (opcional, o usar khaki más claro) */
+    --bg-card-dark: var(--color-dark-green);/* Fondo para tarjetas sobre hunter green */
+    --bg-nav-footer: var(--color-dark-green);
 
-body.dark-mode {
-    /* Variables para Modo Oscuro */
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2c2c2c;
-    --bg-card: #333333;
-    --bg-nav-footer: #222222;
-    --text-primary: #f4f4f4;
-    --text-secondary: #aaaaaa;
-    --text-light: #f4f4f4;
-    --border-color: #555;
-    --shadow-color: rgba(0,0,0,0.3);
-    --shadow-color-hover: rgba(0,0,0,0.4);
+    /* Textos */
+    --text-main: var(--color-cafe-noir);    /* Texto principal sobre khaki */
+    --text-light: var(--color-khaki);       /* Texto sobre fondos oscuros */
+    --text-headings: var(--color-dark-green); /* Títulos sobre khaki */
+    --text-headings-alt: var(--color-khaki);  /* Títulos sobre hunter green */
+
+    /* Otros */
+    --border-color: var(--color-raw-umber);
+    /* Sombra cálida basada en Raw Umber */
+    --shadow-color: rgba(138, 98, 64, 0.2); 
+    --shadow-color-hover: rgba(138, 98, 64, 0.35);
 }
 
 /* Base */
@@ -46,8 +48,8 @@ body.dark-mode {
 body {
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
+    color: var(--text-main);
+    background-color: var(--bg-body); /* Fondo Khaki */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -59,109 +61,149 @@ body {
 
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
-    color: var(--text-primary);
+    color: var(--text-headings); /* Títulos en Dark Green */
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 h2 {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background-color: var(--primary-color);
+    width: 80px;
+    height: 3px;
+    background-color: var(--secondary-color); /* Subrayado en Raw Umber */
     border-radius: 2px;
 }
 
 p {
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
 }
 
 a {
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Enlaces en Hunter Green */
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+a:hover {
+    color: var(--secondary-color); /* Hover en Raw Umber */
+    text-decoration: underline;
 }
 
 img {
     max-width: 100%;
     height: auto;
     display: block;
+    border-radius: 8px;
 }
 
+/* Botones */
 .btn {
     display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    padding: 12px 25px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    font-weight: bold;
+    background-color: var(--primary-color); /* Fondo Hunter Green */
+    color: var(--text-light); /* Texto Khaki */
+    padding: 14px 30px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    text-decoration: none; /* Asegura que no se subraye */
 }
 
 .btn:hover {
-    background-color: #43a047;
+    background-color: var(--secondary-color); /* Fondo cambia a Raw Umber */
+    color: var(--text-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px var(--shadow-color-hover);
+    text-decoration: none;
 }
 
+/* Secciones */
 .section {
-    padding: 80px 0;
-    background-color: var(--bg-primary);
+    padding: 150px 0 100px 0;
+    background-color: var(--bg-body); /* Fondo Khaki por defecto */
     transition: background-color 0.3s ease;
 }
 
+/* Secciones alternas con fondo oscuro para contraste */
 .section:nth-of-type(even) {
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-section-alt); /* Fondo Hunter Green */
+    color: var(--text-light); /* Texto Khaki */
 }
+
+.section:nth-of-type(even) h2,
+.section:nth-of-type(even) h3 {
+    color: var(--text-headings-alt); /* Títulos Khaki */
+}
+
+.section:nth-of-type(even) p {
+     color: rgba(202, 186, 156, 0.9); /* Khaki con ligera transparencia para párrafos */
+}
+
 
 /* Header - Hero Section */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../IMG/Ft1.jpeg') no-repeat center center/cover;
-    color: #ffffff; /* Texto siempre blanco aquí */
-    height: 70vh;
+    /* Overlay más oscuro usando Dark Green con opacidad */
+    background: linear-gradient(rgba(16, 40, 32, 0.7), rgba(16, 40, 32, 0.7)), url('../IMG/Ft1.jpeg') no-repeat center center/cover;
+    color: var(--text-light);
+    min-height: 80vh; /* Un poco más alto */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
+    border-bottom: 5px solid var(--secondary-color); /* Detalle Raw Umber abajo */
 }
 
 .hero-content {
-    max-width: 800px;
-    padding: 20px;
+    max-width: 900px;
+    padding: 30px;
 }
 
 .hero-content h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    color: #ffffff; /* Texto siempre blanco aquí */
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-light); /* Texto Khaki */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    line-height: 1.1;
 }
 
 .hero-content p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    color: #f4f4f4; /* Texto siempre claro aquí */
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+    color: rgba(202, 186, 156, 0.95); /* Khaki casi opaco */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    font-weight: 300;
 }
 
 /* Navbar */
 .navbar {
-    background-color: var(--bg-nav-footer);
+    background-color: var(--bg-nav-footer); /* Dark Green */
     color: var(--text-light);
-    padding: 1rem 0;
+    padding: 1.2rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px var(--shadow-color);
-    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(202, 186, 156, 0.1);
 }
 
 .navbar .container {
@@ -172,32 +214,37 @@ img {
 
 .navbar .logo {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--secondary-color);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-light); /* Logo Khaki */
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
+    margin: 0;
 }
 
 .nav-links li {
-    margin-left: 30px;
+    margin-left: 35px;
 }
 
 .nav-links a {
-    color: var(--text-light);
-    font-weight: bold;
-    transition: color 0.3s ease;
+    color: var(--text-light); /* Enlaces Khaki */
+    font-weight: 600;
+    transition: all 0.3s ease;
     padding: 5px 0;
     position: relative;
+    font-size: 1.05rem;
+    text-decoration: none; /* Sin subrayado por defecto */
 }
 
 .nav-links a::after {
@@ -205,7 +252,7 @@ img {
     position: absolute;
     width: 0%;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color); /* Subrayado Raw Umber al hover */
     left: 0;
     bottom: -5px;
     transition: width 0.3s ease-in-out;
@@ -216,10 +263,11 @@ img {
 }
 
 .nav-links a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Texto cambia a Raw Umber */
+    text-decoration: none;
 }
 
-/* Botones de Tema y Menú */
+/* Botones de Tema y Menú (Ocultos por ahora si no se usan, ajustar si es necesario) */
 .theme-toggle,
 .menu-toggle {
     background: none;
@@ -228,332 +276,150 @@ img {
     font-size: 1.5rem;
     cursor: pointer;
     transition: color 0.3s ease;
+    display: none; /* Ocultos en desktop */
 }
 
-.theme-toggle:hover,
-.menu-toggle:hover {
-    color: var(--secondary-color);
-}
-
-.menu-toggle {
-    display: none; /* Oculto en desktop */
-}
-
-
-/* About Us Section */
+/* About Us Section (Fondo Khaki) */
 .about-us .container {
     text-align: center;
 }
 
 .about-us p {
-    font-size: 1.1rem;
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto 3rem auto;
-    color: var(--text-secondary);
+    font-size: 1.15rem;
 }
 
 .about-images {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 .about-images img {
     width: 100%;
-    max-width: 450px;
-    height: 300px;
+    max-width: 480px;
+    height: 320px;
     object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    transition: transform 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 4px solid #fff; /* Marco blanco para resaltar sobre khaki */
 }
 
 .about-images img:hover {
     transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 25px var(--shadow-color-hover);
 }
 
-/* Products Section */
+/* Products Section (Fondo Hunter Green) */
+.products {
+    /* Asegura que el texto dentro de las tarjetas sea legible */
+    color: var(--text-main); 
+}
+
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 35px;
+    margin-top: 4rem;
 }
 
 .product-item {
-    background-color: var(--bg-card);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    padding: 25px;
+    background-color: #ffffff; /* Tarjetas con fondo Khaki para resaltar */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Sombra más oscura sobre fondo oscuro */
+    padding: 30px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 5px solid var(--primary-color); /* Detalle Hunter Green */
+    height: 100%; /* Para que todas tengan la misma altura */
+    display: flex;
+    flex-direction: column;
 }
 
 .product-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px var(--shadow-color-hover);
+    transform: translateY(-12px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
 .product-item img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--border-color);
 }
 
 .product-item h3 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+    color: var(--color-dark-green); /* Título oscuro para que se lea bien en blanco */
+    font-size: 1.7rem;
+    margin-bottom: 15px;
 }
 
 .product-item p {
-    font-size: 1rem;
-    color: var(--text-secondary);
+    font-size: 1.05rem;
+    color: var(--color-cafe-noir); /* Café oscuro */
+    flex-grow: 1;
 }
 
-/* Gallery Section */
+/* Gallery Section (Fondo Khaki) */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
 }
 
 .gallery-grid img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px var(--shadow-color);
-    transition: transform 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid white;
+    cursor: pointer;
 }
 
 .gallery-grid img:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
+    box-shadow: 0 10px 20px var(--shadow-color-hover);
+    z-index: 2;
+    position: relative;
 }
 
-/* Contact Section */
-.contact .container {
-    text-align: center;
-}
-
-.contact p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    color: var(--text-secondary);
-}
-
-#contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: var(--bg-card);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    transition: background-color 0.3s ease;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: var(--primary-color);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-}
-
-#form-messages {
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-#form-messages.success {
-    color: var(--primary-color);
-}
-
-#form-messages.error {
-    color: #e74c3c; /* Un rojo para errores */
-}
-
-/* Footer */
-.footer {
-    background-color: var(--bg-nav-footer);
-    color: var(--text-light);
-    padding: 30px 0;
-    text-align: center;
-    margin-top: 40px;
-    transition: background-color 0.3s ease;
-}
-
-.footer .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer p {
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    color: var(--text-light);
-}
-
-/* Estilos para los íconos del footer */
-.social-links {
-    display: flex;
-    gap: 20px;
-}
-
-.social-links a {
-    color: var(--text-light);
-    font-size: 1.8rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--primary-color);
-    transform: translateY(-3px);
-}
-
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 3rem;
-    }
-
-    .hero-content p {
-        font-size: 1.2rem;
-    }
-
-    .nav-right {
-        gap: 1rem;
-    }
-    
-    /* Estilos del Menú Hamburguesa */
-    .menu-toggle {
-        display: block; /* Muestra el botón de hamburguesa */
-        z-index: 1002; /* Asegura que esté encima */
-    }
-
-    .nav-links {
-        display: none; /* Oculta la lista de links */
-        flex-direction: column;
-        position: absolute;
-        top: 70px; /* Altura del navbar */
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-nav-footer);
-        padding: 1rem 0;
-        box-shadow: 0 5px 10px var(--shadow-color);
-        z-index: 1001;
-    }
-
-    .nav-links.active {
-        display: flex; /* Muestra el menú al agregar la clase 'active' */
-    }
-
-    .nav-links li {
-        margin: 1rem 0;
-        text-align: center;
-    }
-
-    .nav-links a:hover::after {
-        width: 0; /* Quita el efecto de subrayado en móvil */
-    }
-    
-    .nav-links a:hover {
-        color: var(--primary-color); /* Mantiene el hover de color */
-    }
-    
-    /* --- */
-
-    .about-images {
-        flex-direction: column;
-    }
-
-    .about-images img {
-        max-width: 100%;
-    }
-
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .section {
-        padding: 50px 0;
-    }
-
-    .product-item {
-        padding: 15px;
-    }
-
-    .product-item h3 {
-        font-size: 1.5rem;
-    }
-}
-
-/* Estilos para la nueva Sección de Ubicación (Mapa) */
+/* Location Section (Fondo Hunter Green) */
 .location .container {
     text-align: center;
 }
 
 .location .address {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--text-light); /* Texto Khaki */
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: rgba(16, 40, 32, 0.2); /* Fondo Dark Green semitransparente */
+    border-radius: 50px;
 }
 
 .location .address i {
-    color: var(--primary-color);
-    margin-right: 10px;
+    color: var(--text-light); /* Icono Khaki */
+    margin-right: 12px;
+    font-size: 1.3rem;
 }
 
 .map-container {
     position: relative;
     overflow: hidden;
-    padding-top: 56.25%; /* Proporción 16:9 para que sea responsivo */
-    border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-color);
+    padding-top: 50%; /* Un poco más panorámico */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border: 4px solid var(--secondary-color); /* Marco Raw Umber */
 }
 
 .map-container iframe {
@@ -563,4 +429,253 @@ img {
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+/* Contact Section (Fondo Khaki) */
+.contact .container {
+    text-align: center;
+    max-width: 800px; /* Limitar ancho para mejor lectura */
+}
+
+#contact-form {
+    margin-top: 3rem;
+    background-color: #fff; /* Fondo blanco para el formulario para contraste limpio */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border-top: 6px solid var(--primary-color); /* Detalle Hunter Green */
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--text-headings); /* Label Dark Green */
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0; /* Borde gris claro inicial */
+    border-radius: 8px;
+    font-size: 1.05rem;
+    background-color: #f9f9f9; /* Fondo muy claro */
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color); /* Foco Hunter Green */
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(76, 100, 68, 0.15); /* Sombra Hunter Green */
+}
+
+.contact .btn {
+    width: 100%; /* Botón de ancho completo en el formulario */
+    padding: 16px;
+    font-size: 1.1rem;
+}
+
+#form-messages {
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#form-messages.success {
+    color: var(--primary-color);
+}
+
+#form-messages.error {
+    color: #d32f2f; /* Rojo estándar para errores */
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-nav-footer); /* Dark Green */
+    color: var(--text-light); /* Khaki */
+    padding: 50px 0;
+    text-align: center;
+    margin-top: 0; /* Eliminar margen superior ya que la sección anterior tiene padding */
+    border-top: 1px solid rgba(202, 186, 156, 0.1);
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: rgba(202, 186, 156, 0.8); /* Khaki con transparencia */
+    letter-spacing: 0.5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 25px;
+}
+
+.social-links a {
+    color: var(--text-light); /* Iconos Khaki */
+    font-size: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.05); /* Fondo sutil para iconos */
+}
+
+.social-links a:hover {
+    color: var(--text-light);
+    background-color: var(--secondary-color); /* Fondo Raw Umber al hover */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 3.8rem;
+    }
+    .nav-links li {
+        margin-left: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.4rem;
+    }
+    
+    .section {
+        padding: 70px 0;
+    }
+    
+    h2 {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* Menú Hamburguesa (Mostrar) */
+    .menu-toggle {
+        display: block; 
+        z-index: 1002; 
+    }
+    
+    .nav-right {
+        gap: 1rem;
+    }
+
+    .nav-links {
+        display: none; /* Ocultar menú por defecto */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Justo debajo del navbar */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-nav-footer); /* Dark Green */
+        padding: 2rem 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        z-index: 1001;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-links.active {
+        display: flex; /* Mostrar al activar */
+    }
+
+    .nav-links li {
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 15px 0;
+        font-size: 1.2rem;
+    }
+
+    .nav-links a:hover::after {
+        width: 0; /* Sin subrayado en móvil */
+    }
+    
+    /* --- */
+
+    .about-images {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Tarjetas más anchas en tablet */
+    }
+    
+    #contact-form {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .navbar .logo {
+        font-size: 1.6rem;
+    }
+
+    .product-item {
+        padding: 20px;
+    }
+
+    .product-item h3 {
+        font-size: 1.5rem;
+    }
+    
+    .location .address {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+    
+    #contact-form {
+        padding: 25px;
+    }
+    
+    .form-group input, .form-group textarea {
+        padding: 12px;
+    }
 }
